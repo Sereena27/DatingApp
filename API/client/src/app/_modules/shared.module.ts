@@ -8,13 +8,13 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [],
   imports: [
     CommonModule,
-    //BsDropdownModule.forRoot(),
+   //BsDropdownModule.forRoot(),
     ToastrModule.forRoot(
       {positionClass: 'toast-bottom-right'
     })  
   ],
   exports:[
-  ToastrModule
+  ToastrModule,
 ]
 })
 export class SharedModule { }
