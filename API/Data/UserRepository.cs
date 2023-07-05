@@ -18,13 +18,6 @@ namespace API.Data
             
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMemberAsync()
-        {
-          return await _context.Users
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(); 
-        }
-
         public async Task<MemberDto> GetMemberAsync(string username)
         {
            return await _context.Users
@@ -33,13 +26,14 @@ namespace API.Data
                 .SingleOrDefaultAsync(); 
         }
 
-        public async Task<IEnumerable<AppUser>> GetUserAsync()
+        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
             return await _context.Users
-                .Include(p => p.Photos)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
+       
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await _context.Users.FindAsync(id);
@@ -51,6 +45,14 @@ namespace API.Data
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(s => s.UserName == username);
         }
+
+        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        {
+            return await _context.Users
+                .Include(p => p.Photos)
+                .ToListAsync();
+        }
+        
 
         public async Task<bool> SaveAllAsync()
         {
