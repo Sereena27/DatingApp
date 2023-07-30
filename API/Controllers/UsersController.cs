@@ -24,7 +24,7 @@ public class UsersController : BaseApiController
             _userRepository = userRepository;
 
     }
-
+    
     [HttpGet]
     public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
     {
