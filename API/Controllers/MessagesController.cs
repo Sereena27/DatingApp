@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -6,7 +5,6 @@ using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace API.Controllers
 {
