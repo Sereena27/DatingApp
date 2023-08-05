@@ -18,7 +18,6 @@ namespace API.Data
             _context = context;
             
         }
-
         public async Task<MemberDto> GetMemberAsync(string username)
         {
            return await _context.Users
@@ -57,11 +56,6 @@ namespace API.Data
             return await _context.Users.FindAsync(id);
         }
 
-        public Task GetUserByUsernameAsync(object username)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<AppUser> GetUserByUsernameAsync(string username)
          {
              return await _context.Users
@@ -69,6 +63,12 @@ namespace API.Data
                  .SingleOrDefaultAsync(s => s.UserName == username);
          }
 
+        public async Task<string> GetUserGender(string username)
+        {
+            return await _context.Users
+                    .Where(s => s.UserName == username)
+                    .Select(s => s.Gender).FirstOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
@@ -77,12 +77,6 @@ namespace API.Data
                 .ToListAsync();
         }
         
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
-
         public void Update(AppUser user)
         {
             _context.Entry(user).State = EntityState.Modified;
